@@ -259,14 +259,14 @@ while not quit_p:
                     objects[-1].cos_a = 1.0
                     objects[-1].kind = "box"
                 if e.key == pygame.K_s:
-                    print object_count
-                    print my_dot_pos[0], my_dot_pos[1]
-                    print objective[0], objective[1]
+                    print(object_count)
+                    print(my_dot_pos[0], my_dot_pos[1])
+                    print(objective[0], objective[1])
                     for x in range(object_count):
                         if objects[x].kind == "dot":
-                            print objects[x].pos[0], objects[x].pos[1], objects[x].charge, objects[x].sign
+                            print(objects[x].pos[0], objects[x].pos[1], objects[x].charge, objects[x].sign)
                         else:
-                            print objects[x].pos[0], objects[x].pos[1], objects[x].charge, objects[x].sign, objects[x].length, objects[x].alpha
+                            print(objects[x].pos[0], objects[x].pos[1], objects[x].charge, objects[x].sign, objects[x].length, objects[x].alpha)
 
             if e.type == pygame.MOUSEBUTTONDOWN:
                 keys = pygame.key.get_pressed()
