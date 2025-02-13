@@ -8,7 +8,7 @@ pygame.init()
 size = [1600, 900]
 screen = pygame.display.set_mode(size, pygame.FULLSCREEN | pygame.HWSURFACE | pygame.DOUBLEBUF)
 scale = min(size[0]/1600.0, size[1]/900.0)
-print scale
+print(scale)
 font = pygame.font.Font("Atarian.ttf", 20)
 levels_file = open("levels.txt")
 
@@ -23,7 +23,7 @@ my_dot_vel = [0.0, 0.0]
 my_dot_pos = [-450.0, 0.0]
 my_dot_color = [255, 0, 255]
 my_dot_mass = 512.0
-my_dot_image = pygame.image.load("my_ball.png").convert_alpha()
+my_dot_image = pygame.image.load("./images/my_ball.png").convert_alpha()
 radius = int((my_dot_mass)**(1.0/3.0)*scale)
 my_dot_image = pygame.transform.smoothscale(my_dot_image, (int(radius*2), int(radius*2)))
 
@@ -155,12 +155,12 @@ for i in range(len(lines)):
         tick += 1
         levels[-1].append(int(lines[i+tick])) #object_count
         tick += 1
-        levels[-1].append(map(float, lines[i+tick].split())) #my_dot_pos
+        levels[-1].append(list(map(float, lines[i+tick].split()))) #my_dot_pos
         tick += 1
-        levels[-1].append(map(float, lines[i+tick].split())) #objective_pos
+        levels[-1].append(list(map(float, lines[i+tick].split()))) #objective_pos
         tick += 1
         for x in range(levels[-1][1]):
-            levels[-1].append(map(float, lines[i+tick].split())) #dots_pos, dots_mass, neg (-1) or pos (1) force
+            levels[-1].append(list(map(float, lines[i+tick].split()))) #dots_pos, dots_mass, neg (-1) or pos (1) force
             tick += 1
         levels[-1].append([]) #comments
         comment_count = 0
@@ -175,7 +175,7 @@ for i in range(len(lines)):
         if lines[i+tick] != "]\n":
             levels[-1].append([])
             for x in range(3):
-                levels[-1][-1].append(map(float, lines[i+tick+x].split()))
+                levels[-1][-1].append(list(map(float, lines[i+tick+x].split())))
             levels[-1].append(True)
         else:
             levels[-1].append(False)
@@ -308,9 +308,9 @@ for x in range(len(levels)): #load the level thumbnails
         try: #if unlocked and the thumbnail for that level is found
             level_thumbnails.append(pygame.image.load(str(x) + ".png").convert_alpha())
         except: #if unlocked and the thumbnail is not found
-            level_thumbnails.append(pygame.image.load("question.png").convert_alpha())
+            level_thumbnails.append(pygame.image.load("./images/question.png").convert_alpha())
     else: #if locked
-        level_thumbnails.append(pygame.image.load("locked.png").convert_alpha())
+        level_thumbnails.append(pygame.image.load("./images/locked.png").convert_alpha())
     level_thumbnails[x] = pygame.transform.smoothscale(level_thumbnails[x], (w, w))
 
 quit_p = False #main loop condition
